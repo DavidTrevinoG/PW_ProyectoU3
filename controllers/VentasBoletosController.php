@@ -8,11 +8,13 @@ class VentasBoletosController {
         $this->ventaBoletosModel = new VentaBoletos();
     }
 
+// Lista Boletos
     public function index() {
         $ventasBoletos = $this->ventaBoletosModel->obtenerVentasBoletos();
         include './views/ventas_boletos/index.php';
     }
 
+// Venta de Boletos
     public function alta() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $cliente_id = $_POST['cliente_id'];
@@ -22,12 +24,13 @@ class VentasBoletosController {
             $total = $_POST['total'];
             $fecha_venta = $_POST['fecha_venta'];
             $this->ventaBoletosModel->insertarVentaBoleto($cliente_id, $pelicula_id, $empleado_id, $cantidad_tickets, $total, $fecha_venta);
-            header("Location: index.php");
+            header("Location: ./index.php?controller=VentasBoletosController&action=index");
         } else {
             include './views/ventas_boletos/alta.php';
         }
     }
 
+// Modificacion de Venta de Boletos
     public function editar() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'];
@@ -38,7 +41,7 @@ class VentasBoletosController {
             $total = $_POST['total'];
             $fecha_venta = $_POST['fecha_venta'];
             $this->ventaBoletosModel->actualizarVentaBoleto($id, $cliente_id, $pelicula_id, $empleado_id, $cantidad_tickets, $total, $fecha_venta);
-            header("Location: index.php");
+            header("Location: ./index.php?controller=VentasBoletosController&action=index");
         } else {
             $id = $_GET['id'];
             $ventaBoleto = $this->ventaBoletosModel->obtenerVentaBoletoPorId($id);
@@ -46,10 +49,11 @@ class VentasBoletosController {
         }
     }
 
+// Eliminar Venta de Boletos
     public function eliminar() {
         $id = $_GET['id'];
         $this->ventaBoletosModel->eliminarVentaBoleto($id);
-        header("Location: index.php");
+        header("Location: ./index.php?controller=VentasBoletosController&action=index");
     }
 }
 ?>

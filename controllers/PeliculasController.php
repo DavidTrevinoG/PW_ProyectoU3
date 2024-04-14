@@ -8,11 +8,13 @@ class PeliculasController {
         $this->peliculaModel = new Pelicula();
     }
 
+// Lista de Peliculas
     public function index() {
         $peliculas = $this->peliculaModel->obtenerPeliculas();
         include './views/peliculas/index.php';
     }
 
+// Nueva Pelicula
     public function alta() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $titulo = $_POST['titulo'];
@@ -22,12 +24,13 @@ class PeliculasController {
             $lanzamiento = $_POST['lanzamiento'];
             $genero_id = $_POST['genero_id'];
             $this->peliculaModel->insertarPelicula($titulo, $descripcion, $duracion, $clasificacion, $lanzamiento, $genero_id);
-            header("Location: index.php");
+            header("Location: ./index.php?controller=PeliculasController&action=index");
         } else {
             include './views/peliculas/alta.php';
         }
     }
 
+// Modificar Pelicula
     public function editar() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'];
@@ -38,7 +41,7 @@ class PeliculasController {
             $lanzamiento = $_POST['lanzamiento'];
             $genero_id = $_POST['genero_id'];
             $this->peliculaModel->actualizarPelicula($id, $titulo, $descripcion, $duracion, $clasificacion, $lanzamiento, $genero_id);
-            header("Location: index.php");
+            header("Location: ./index.php?controller=PeliculasController&action=index");
         } else {
             $id = $_GET['id'];
             $pelicula = $this->peliculaModel->obtenerPeliculaPorId($id);
@@ -46,10 +49,11 @@ class PeliculasController {
         }
     }
 
+// Eliminar Pelicula
     public function eliminar() {
         $id = $_GET['id'];
         $this->peliculaModel->eliminarPelicula($id);
-        header("Location: index.php");
+        header("Location: ./index.php?controller=PeliculasController&action=index");
     }
 }
 ?>

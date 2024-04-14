@@ -2,8 +2,8 @@
 
 class Conexion {
     private $host = "localhost";
-    private $user = "root"; // Cambiar por tu usuario de la base de datos
-    private $password = ""; // Cambiar por tu contraseña de la base de datos
+    private $user = "root";
+    private $password = ""; 
     private $database = "cine_db";
 
     public function conectar() {

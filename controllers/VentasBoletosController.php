@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../models/VentaBoletos.php';
 
 class VentasBoletosController {
-    private $ventaBoletosModel;
+    private $ventaBoletosModel, $clientes, $peliculas, $empleados;
 
     public function __construct() {
         $this->ventaBoletosModel = new VentaBoletos();
@@ -11,6 +11,9 @@ class VentasBoletosController {
 // Lista Boletos
     public function index() {
         $ventasBoletos = $this->ventaBoletosModel->obtenerVentasBoletos();
+        $clientes = $this->ventaBoletosModel->obtenerClientes();
+        $peliculas = $this->ventaBoletosModel->obtenerPeliculas();
+        $empleados = $this->ventaBoletosModel->obtenerEmpleados();
         include './views/ventas_boletos/index.php';
     }
 
@@ -26,6 +29,9 @@ class VentasBoletosController {
             $this->ventaBoletosModel->insertarVentaBoleto($cliente_id, $pelicula_id, $empleado_id, $cantidad_tickets, $total, $fecha_venta);
             header("Location: ./index.php?controller=VentasBoletosController&action=index");
         } else {
+            $clientes = $this->ventaBoletosModel->obtenerClientes();
+            $peliculas = $this->ventaBoletosModel->obtenerPeliculas();
+            $empleados = $this->ventaBoletosModel->obtenerEmpleados();
             include './views/ventas_boletos/alta.php';
         }
     }
@@ -45,6 +51,9 @@ class VentasBoletosController {
         } else {
             $id = $_GET['id'];
             $ventaBoleto = $this->ventaBoletosModel->obtenerVentaBoletoPorId($id);
+            $clientes = $this->ventaBoletosModel->obtenerClientes();
+            $peliculas = $this->ventaBoletosModel->obtenerPeliculas();
+            $empleados = $this->ventaBoletosModel->obtenerEmpleados();
             include './views/ventas_boletos/editar.php';
         }
     }

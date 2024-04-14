@@ -4,24 +4,42 @@
     <form method="post" action="./index.php?controller=VentasBoletosController&action=editar">
         <input type="hidden" name="id" value="<?php echo $ventaBoleto['id']; ?>">
         <div class="form-group">
-            <label for="cliente_id">ID de Cliente:</label>
-            <input type="number" name="cliente_id" class="form-control" value="<?php echo $ventaBoleto['cliente_id']; ?>" required>
+            <label for="cliente_id">Cliente:</label>
+            <select name="cliente_id" class="form-control" required>
+                <?php foreach ($clientes as $cliente): ?>
+                    <option value="<?php echo $cliente['id']; ?>" <?php echo ($cliente['id'] == $ventaBoleto['cliente_id']) ? 'selected' : ''; ?>>
+                        <?php echo $cliente['nombre']; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
         </div>
         <div class="form-group">
-            <label for="pelicula_id">ID de Película:</label>
-            <input type="number" name="pelicula_id" class="form-control" value="<?php echo $ventaBoleto['pelicula_id']; ?>" required>
+            <label for="pelicula_id">Película:</label>
+            <select name="pelicula_id" class="form-control" required>
+                <?php foreach ($peliculas as $pelicula): ?>
+                    <option value="<?php echo $pelicula['id']; ?>" <?php echo ($pelicula['id'] == $ventaBoleto['pelicula_id']) ? 'selected' : ''; ?>>
+                        <?php echo $pelicula['titulo']; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
         </div>
         <div class="form-group">
-            <label for="empleado_id">ID de Empleado:</label>
-            <input type="number" name="empleado_id" class="form-control" value="<?php echo $ventaBoleto['empleado_id']; ?>" required>
+            <label for="empleado_id">Empleado:</label>
+            <select name="empleado_id" class="form-control" required>
+                <?php foreach ($empleados as $empleado): ?>
+                    <option value="<?php echo $empleado['id']; ?>" <?php echo ($empleado['id'] == $ventaBoleto['empleado_id']) ? 'selected' : ''; ?>>
+                        <?php echo $empleado['nombre']; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
         </div>
         <div class="form-group">
-            <label for="cantidad_tickets">Cantidad de Tickets:</label>
+            <label for="cantidad_tickets">Cantidad de Boletos:</label>
             <input type="number" name="cantidad_tickets" class="form-control" value="<?php echo $ventaBoleto['cantidad_tickets']; ?>" required>
         </div>
         <div class="form-group">
             <label for="total">Total:</label>
-            <input type="text" name="total" class="form-control" value="<?php echo $ventaBoleto['total']; ?>" required>
+            <input type="number" name="total" class="form-control" value="<?php echo $ventaBoleto['total']; ?>" required>
         </div>
         <div class="form-group">
             <label for="fecha_venta">Fecha de Venta:</label>

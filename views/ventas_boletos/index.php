@@ -7,10 +7,10 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>ID de Cliente</th>
-            <th>ID de Película</th>
-            <th>ID de Empleado</th>
-            <th>Cantidad de Tickets</th>
+            <th>Cliente</th>
+            <th>Película</th>
+            <th>Empleado</th>
+            <th>Cantidad de Boletos</th>
             <th>Total</th>
             <th>Fecha de Venta</th>
             <th>Acciones</th>
@@ -20,9 +20,9 @@
         <?php foreach ($ventasBoletos as $ventaBoleto): ?>
             <tr>
                 <td><?php echo $ventaBoleto['id']; ?></td>
-                <td><?php echo $ventaBoleto['cliente_id']; ?></td>
-                <td><?php echo $ventaBoleto['pelicula_id']; ?></td>
-                <td><?php echo $ventaBoleto['empleado_id']; ?></td>
+                <td><?php echo obtenerNombreCliente($ventaBoleto['cliente_id'], $clientes); ?></td>
+                <td><?php echo obtenerTituloPelicula($ventaBoleto['pelicula_id'], $peliculas); ?></td>
+                <td><?php echo obtenerNombreEmpleado($ventaBoleto['empleado_id'], $empleados); ?></td>
                 <td><?php echo $ventaBoleto['cantidad_tickets']; ?></td>
                 <td><?php echo $ventaBoleto['total']; ?></td>
                 <td><?php echo $ventaBoleto['fecha_venta']; ?></td>
@@ -35,3 +35,37 @@
         </tbody>
     </table>
 </div>
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<?php
+function obtenerNombreCliente($cliente_id, $clientes) {
+    foreach ($clientes as $cliente) {
+        if ($cliente['id'] === $cliente_id) {
+            return $cliente['nombre'];
+        }
+    }
+    return 'Desconocido';
+}
+
+function obtenerTituloPelicula($pelicula_id, $peliculas) {
+    foreach ($peliculas as $pelicula) {
+        if ($pelicula['id'] === $pelicula_id) {
+            return $pelicula['titulo'];
+        }
+    }
+    return 'Desconocida';
+}
+
+function obtenerNombreEmpleado($empleado_id, $empleados) {
+    foreach ($empleados as $empleado) {
+        if ($empleado['id'] === $empleado_id) {
+            return $empleado['nombre'];
+        }
+    }
+    return 'Desconocido';
+}
+?>

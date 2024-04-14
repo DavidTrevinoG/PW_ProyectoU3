@@ -14,6 +14,24 @@ class VentaBoletos {
 
         return $resultado->fetch_all(MYSQLI_ASSOC);
     }
+    public function obtenerClientes() {
+        $query = "SELECT * FROM clientes";
+        $resultado = $this->conexion->conectar()->query($query);
+
+        return $resultado->fetch_all(MYSQLI_ASSOC);
+    }
+    public function obtenerPeliculas() {
+        $query = "SELECT * FROM peliculas";
+        $resultado = $this->conexion->conectar()->query($query);
+
+        return $resultado->fetch_all(MYSQLI_ASSOC);
+    }
+    public function obtenerEmpleados() {
+        $query = "SELECT * FROM empleados";
+        $resultado = $this->conexion->conectar()->query($query);
+
+        return $resultado->fetch_all(MYSQLI_ASSOC);
+    }
 
     public function insertarVentaBoleto($cliente_id, $pelicula_id, $empleado_id, $cantidad_tickets, $total, $fecha_venta) {
         $query = "INSERT INTO ventas_boletos (cliente_id, pelicula_id, empleado_id, cantidad_tickets, total, fecha_venta) VALUES ('$cliente_id', '$pelicula_id', '$empleado_id', '$cantidad_tickets', '$total', '$fecha_venta')";

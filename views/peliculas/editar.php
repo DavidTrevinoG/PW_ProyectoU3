@@ -24,8 +24,14 @@
             <input type="date" name="lanzamiento" class="form-control" value="<?php echo $pelicula['lanzamiento']; ?>" required>
         </div>
         <div class="form-group">
-            <label for="genero_id">ID de Género:</label>
-            <input type="number" name="genero_id" class="form-control" value="<?php echo $pelicula['genero_id']; ?>" required>
+            <label for="genero_id">Género:</label>
+            <select name="genero_id" class="form-control" required>
+                <?php foreach ($generos as $genero): ?>
+                    <option value="<?php echo $genero['id']; ?>" <?php echo ($genero['id'] == $pelicula['genero_id']) ? 'selected' : ''; ?>>
+                        <?php echo $genero['nombre']; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
         </div>
         <button type="submit" class="btn btn-success">Guardar Cambios</button>
     </form>

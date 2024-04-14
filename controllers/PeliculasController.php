@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../models/Pelicula.php';
 
 class PeliculasController {
-    private $peliculaModel;
+    private $peliculaModel, $generos;
 
     public function __construct() {
         $this->peliculaModel = new Pelicula();
@@ -11,6 +11,7 @@ class PeliculasController {
 // Lista de Peliculas
     public function index() {
         $peliculas = $this->peliculaModel->obtenerPeliculas();
+        $generos = $this->peliculaModel->obtenerGeneros();
         include './views/peliculas/index.php';
     }
 
@@ -26,6 +27,7 @@ class PeliculasController {
             $this->peliculaModel->insertarPelicula($titulo, $descripcion, $duracion, $clasificacion, $lanzamiento, $genero_id);
             header("Location: ./index.php?controller=PeliculasController&action=index");
         } else {
+            $generos = $this->peliculaModel->obtenerGeneros();
             include './views/peliculas/alta.php';
         }
     }
@@ -45,6 +47,7 @@ class PeliculasController {
         } else {
             $id = $_GET['id'];
             $pelicula = $this->peliculaModel->obtenerPeliculaPorId($id);
+            $generos = $this->peliculaModel->obtenerGeneros();
             include './views/peliculas/editar.php';
         }
     }

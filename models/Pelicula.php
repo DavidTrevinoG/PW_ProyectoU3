@@ -13,7 +13,14 @@ class Pelicula {
         $resultado = $this->conexion->conectar()->query($query);
 
         return $resultado->fetch_all(MYSQLI_ASSOC);
+    }   
+    public function obtenerGeneros() {
+        $query = "SELECT * FROM generos";
+        $resultado = $this->conexion->conectar()->query($query);
+
+        return $resultado->fetch_all(MYSQLI_ASSOC);
     }
+
 
     public function insertarPelicula($titulo, $descripcion, $duracion, $clasificacion, $lanzamiento, $genero_id) {
         $query = "INSERT INTO peliculas (titulo, descripcion, duracion, clasificacion, lanzamiento, genero_id) VALUES ('$titulo', '$descripcion', '$duracion', '$clasificacion', '$lanzamiento', '$genero_id')";

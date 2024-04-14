@@ -3,37 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Gestión de Cine</title>
+    <title>Cine - Sistema de Gestión</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Cine XYZ</a>
+        <a class="navbar-brand" href="#">Sistema de Gestión de Cine</a>
     </nav>
 
     <div class="container mt-4">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link <?php echo((isset($_GET['controller']) && $_GET['controller'] == 'PeliculasController' || !isset($_GET['controller']))? 'active' : '') ?>" href="./index.php?controller=PeliculasController&action=index">Peliculas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php echo(isset($_GET['controller']) && $_GET['controller'] == 'GenerosController' ? 'active' : '') ?>" href="./index.php?controller=GenerosController&action=index">Géneros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php echo(isset($_GET['controller']) && $_GET['controller'] == 'ClientesController' ? 'active' : '') ?>" href="./index.php?controller=ClientesController&action=index">Clientes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php echo(isset($_GET['controller']) && $_GET['controller'] == 'EmpleadosController' ? 'active' : '') ?>" href="./index.php?controller=EmpleadosController&action=index">Empleados</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php echo(isset($_GET['controller']) && $_GET['controller'] == 'VentasBoletosController' ? 'active' : '') ?>" href="./index.php?controller=VentasBoletosController&action=index">Ventas de Boletos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php echo(isset($_GET['controller']) && $_GET['controller'] == 'VentasSnackController' ? 'active' : '') ?>" href="./index.php?controller=VentasSnackController&action=index">Ventas de Snack</a>
+            </li>
+        </ul>
+
         <?php
-            // Controlador predeterminado y acción predeterminada
-            $defaultController = 'EmpleadosController';
-            $defaultAction = 'index';
-
-            // Verificar si se proporciona un controlador y una acción en la URL
             if (isset($_GET['controller']) && isset($_GET['action'])) {
-                $controllerName = $_GET['controller'];
+                $controller = $_GET['controller'];
                 $action = $_GET['action'];
+
+                require_once "controllers/$controller.php";
+                
+                $controller = new $controller();
+
+                $controller->$action();
             } else {
-                // Si no se proporciona, utilizar el controlador y acción predeterminados
-                $controllerName = $defaultController;
-                $action = $defaultAction;
+                require_once "controllers/PeliculasController.php";
+                
+                $peliculasController = new PeliculasController();
+
+                $peliculasController->index();
             }
-
-            // Incluir el controlador correspondiente
-            require_once "controllers/$controllerName.php";
-
-            // Crear una instancia del controlador y llamar a la acción correspondiente
-            $controller = new $controllerName();
-            $controller->$action();
         ?>
     </div>
 

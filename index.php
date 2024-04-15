@@ -35,6 +35,9 @@
             <li class="nav-item">
                 <a class="nav-link <?php echo(isset($_GET['controller']) && $_GET['controller'] == 'VentasSnacksController' ? 'active' : '') ?>" href="./index.php?controller=VentasSnacksController&action=index">Ventas de Snack</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link <?php echo(isset($_GET['controller']) && $_GET['controller'] == 'ReportesController' ? 'active' : '') ?>" href="./index.php?controller=ReportesController&action=index">Reportes</a>
+            </li>
         </ul>
 
         <?php

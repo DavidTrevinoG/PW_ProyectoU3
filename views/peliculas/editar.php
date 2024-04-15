@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4" id="secon">
     <h2>Editar Película</h2>
 
     <form method="post" action="./index.php?controller=PeliculasController&action=editar">

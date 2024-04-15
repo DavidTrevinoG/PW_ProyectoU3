@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4" id="secon">
     <h2>Listado de Ventas de Boletos</h2>
 
     <a href="./index.php?controller=VentasBoletosController&action=alta" class="btn btn-primary mb-3">Agregar Venta de Boletos</a>

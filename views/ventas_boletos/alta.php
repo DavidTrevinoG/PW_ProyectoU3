@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4" id="secon">
     <h2>Alta de Venta de Boletos</h2>
 
     <form method="post" action="./index.php?controller=VentasBoletosController&action=alta">

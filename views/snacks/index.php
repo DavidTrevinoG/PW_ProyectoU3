@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4" id="secon">
     <h2>Listado de Snacks</h2>
 
     <a href="./index.php?controller=SnacksController&action=alta" class="btn btn-primary mb-3">Agregar Snack</a>

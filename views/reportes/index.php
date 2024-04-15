@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4" id="secon">
     <h1>Reportes</h1>
 
     <form method="post" action="./index.php?controller=ReportesController&action=listado_empleados">

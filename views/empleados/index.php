@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4" id="secon">
     <h2>Listado de Empleados</h2>
 
     <a href="./index.php?controller=EmpleadosController&action=agregar" class="btn btn-primary mb-3">Agregar Empleado</a>

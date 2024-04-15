@@ -33,7 +33,7 @@
                 <a class="nav-link <?php echo(isset($_GET['controller']) && $_GET['controller'] == 'SnacksController' ? 'active' : '') ?>" href="./index.php?controller=SnacksController&action=index">Snacks</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?php echo(isset($_GET['controller']) && $_GET['controller'] == 'VentasSnackController' ? 'active' : '') ?>" href="./index.php?controller=VentasSnackController&action=index">Ventas de Snack</a>
+                <a class="nav-link <?php echo(isset($_GET['controller']) && $_GET['controller'] == 'VentasSnacksController' ? 'active' : '') ?>" href="./index.php?controller=VentasSnacksController&action=index">Ventas de Snack</a>
             </li>
         </ul>
 
